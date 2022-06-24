@@ -1,0 +1,53 @@
+ public string ReEnter(string data);
+ public string ValidateEmail(string data);
+ ---------------------------------------------
+  var data = string.Empty;
+            var data2 = string.Empty;
+            Console.Write(string.Format("{0,-10}", "Email Id : "));
+            data = Console.ReadLine();
+            data2=ValidateEmail(data);
+            bool flag = this.repository.DuplicateCheck(data);
+            if (flag)
+            {
+                Console.WriteLine("Mail Id already exists!");
+                data2=ReEnter(data);
+               
+            }
+            registrationData.EmailId = data2;
+            
+ ------------------------------------------------------------           
+            
+  public string ReEnter(string data)
+        {
+            var data2 = data;
+            Console.WriteLine("Please re-enter mail Id");
+            data = Console.ReadLine();
+            if (data == string.Empty)
+            {
+                Console.WriteLine("** EmailID is Mandatory**");
+                return "";
+            }
+            else
+            {
+                data2=ValidateEmail(data);
+                return data2;
+            }
+        }
+
+        public string ValidateEmail(string data)
+        {
+            string email = data;
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            if (match.Success)
+            {
+                return email;
+            }
+
+            else
+            {
+                Console.WriteLine("Invalid Email Address");
+                email=ReEnter("");
+                return email;
+            }
+        }
