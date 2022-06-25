@@ -1,6 +1,10 @@
+Inside interface of IUserIntro:
+
  public string ReEnter(string data);
  public string ValidateEmail(string data);
  ---------------------------------------------
+  Email console phase:
+  
   var data = string.Empty;
             var data2 = string.Empty;
             Console.Write(string.Format("{0,-10}", "Email Id : "));
